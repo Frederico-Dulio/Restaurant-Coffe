@@ -10,11 +10,11 @@ class AdminController extends Controller
         return view('index');
     }
 
-    public function Login(){
-
+    public function Login(Request $request){
+        dd('Bem Vindo');
     }
 
     public function Dashboard(){
-
+        return view('Admin.index');
     }
 }

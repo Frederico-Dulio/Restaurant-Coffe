@@ -7,7 +7,7 @@
     <!--
 
 Eatery Cafe Template
-
+login
 http://www.templatemo.com/tm-515-eatery
 
 -->
@@ -31,6 +31,8 @@ http://www.templatemo.com/tm-515-eatery
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="{{ asset('css/templatemo-style.css') }}">
 
+    <!-- Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 
@@ -125,8 +127,13 @@ http://www.templatemo.com/tm-515-eatery
             </div>
 
         </div>
+        @if (Session::has('error'))
+            @include('sweetalert::alert')
+            <div class="alert alert-warning" role="alert">
+                {{ session::get('error') }}
+            </div>
+        @endif
     </section>
-
 
     <!-- ABOUT -->
     <section id="about" data-stellar-background-ratio="0.5">
@@ -488,9 +495,10 @@ http://www.templatemo.com/tm-515-eatery
             <i class="uil uil-times form_close"></i>
             <!-- Login From -->
             <div class="form login_form">
-                <form action="#">
+                <form action="{{ route('admin.login') }}" method="POST">
                     <h2>Login</h2>
                     @csrf
+
                     <div class="input_box">
                         <input type="email" placeholder="exemplo@gmail.com" required />
                         <i class="uil uil-envelope-alt email"></i>
