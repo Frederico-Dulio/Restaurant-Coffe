@@ -402,6 +402,20 @@
                                         <h6>Aabid Raheem</h6>
                                         <div class="agent-score">
                                             <div class="progress">
+                                                <script>
+                                                    "use strict";
+                                                    var o = "rtl" === $("html").attr("data-textdirection");
+                                                    @if (session('error'))
+                                                        toastr.success("{{ session('error') }}",
+                                                            "{{ Auth::guard('admin')->user()->name }}", {
+                                                                closeButton: !0,
+                                                                tapToDismiss: !1,
+                                                                progressBar: !0,
+                                                                rtl: o
+                                                            }
+                                                        );
+                                                    @endif
+                                                </script>
                                                 <div class="progress-bar bg-primary" role="progressbar"
                                                     style="width: 40%" aria-valuenow="40" aria-valuemin="0"
                                                     aria-valuemax="100"></div>
@@ -442,7 +456,20 @@
                                     </div>
                                 </div>
                                 <div class="ratings-list">
-                                    <div class="rating-level">4.0</div>
+                                    <script>
+                                        "use strict";
+                                        var o = "rtl" === $("html").attr("data-textdirection");
+                                        @if (session('error'))
+                                            toastr.success("{{ session('error') }}",
+                                                "{{ Auth::guard('admin')->user()->name }}", {
+                                                    closeButton: !0,
+                                                    tapToDismiss: !1,
+                                                    progressBar: !0,
+                                                    rtl: o
+                                                }
+                                            );
+                                        @endif
+                                    </script>s="rating-level">4.0</div>
                                     <div class="rating-stars">
                                         <div class="rateB"></div>
                                     </div>
@@ -484,7 +511,5 @@
             </div>
         </div>
         <!-- Row ends -->
-
     </div>
-    <!-- Content wrapper end -->
 @endsection

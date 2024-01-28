@@ -38,6 +38,9 @@
     <link rel="stylesheet" href="{{ asset('admin/vendor/chartist/css/chartist.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin/vendor/chartist/css/chartist-custom.css') }}" />
 
+    <!-- Alert -->
+    <link href="{{ asset('toatr.css') }}" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -167,8 +170,14 @@
                 <li class="dropdown">
                     <a href="#" id="userSettings" class="user-settings" data-toggle="dropdown"
                         aria-haspopup="true">
-                        <span class="user-name">Zyan Ferris</span>
-                        <span class="avatar">ZF<span class="status busy"></span></span>
+                        <span class="user-name">{{ Auth::guard('admin')->user()->name }}</span>
+                        @php
+                            $userNames = explode(' ', Auth::guard('admin')->user()->name);
+                            $primeira_letra_nome = $userNames[0][0];
+                            $primeira_letra_ultimo_nome = $userNames[count($userNames) - 1][0];
+                        @endphp
+
+                        <span class="avatar">{{$primeira_letra_nome.$primeira_letra_ultimo_nome}}<span class="status busy"></span></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userSettings">
                         <div class="header-profile-actions">
@@ -1044,6 +1053,22 @@
 
     <!-- Main Js Required -->
     <script src="{{ asset('admin/js/main.js') }}"></script>
+    {{-- Toast --}}
+    <script src="{{ asset('toastr.min.js') }}"></script>
+    <script>
+        "use strict";
+        var o = "rtl" === $("html").attr("data-textdirection");
+        @if (session('error'))
+            toastr.success("{{ session('error') }}",
+                "{{ Auth::guard('admin')->user()->name }}", {
+                    closeButton: !0,
+                    tapToDismiss: !1,
+                    progressBar: !0,
+                    rtl: o
+                }
+            );
+        @endif
+    </script>
 
 </body>
 
