@@ -24,6 +24,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/login/owner', [AdminController::class, 'Login'])->name('admin.login');
 
     Route::get('/dashboard', [AdminController::class, 'Dashboard'])->name('admin.dashboard')->middleware('admin');
+    Route::get('/logout', [AdminController::class, 'Logout'])->name('admin.logout')->middleware('admin');
 });
 
 /* ---------- End Admin Rout ----------*/
@@ -37,4 +38,4 @@ Route::get('/', function () {
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
-require __DIR__ . '/auth.php';
+// require __DIR__ . '/auth.php';

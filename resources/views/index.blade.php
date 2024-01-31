@@ -634,6 +634,21 @@ http://www.templatemo.com/tm-515-eatery
             );
         @endif
     </script>
+
+    <script>
+        "use strict";
+        var o = "rtl" === $("html").attr("data-textdirection");
+        @if (session('logout'))
+            toastr.info("{{ session('logout') }}",
+                "", {
+                    closeButton: !0,
+                    tapToDismiss: !1,
+                    progressBar: !0,
+                    rtl: o
+                }
+            );
+        @endif
+    </script>
 </body>
 
 </html>
