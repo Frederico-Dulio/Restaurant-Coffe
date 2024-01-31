@@ -7,7 +7,7 @@
     <!--
 
 Eatery Cafe Template
-
+login
 http://www.templatemo.com/tm-515-eatery
 
 -->
@@ -31,6 +31,8 @@ http://www.templatemo.com/tm-515-eatery
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="{{ asset('css/templatemo-style.css') }}">
 
+    <!-- Alert -->
+    <link href="{{ asset('toatr.css') }}" rel="stylesheet" />
 
 </head>
 
@@ -126,7 +128,6 @@ http://www.templatemo.com/tm-515-eatery
 
         </div>
     </section>
-
 
     <!-- ABOUT -->
     <section id="about" data-stellar-background-ratio="0.5">
@@ -488,15 +489,16 @@ http://www.templatemo.com/tm-515-eatery
             <i class="uil uil-times form_close"></i>
             <!-- Login From -->
             <div class="form login_form">
-                <form action="#">
+                <form action="{{ route('admin.login') }}" method="POST">
                     <h2>Login</h2>
                     @csrf
+
                     <div class="input_box">
-                        <input type="email" placeholder="exemplo@gmail.com" required />
+                        <input type="email" placeholder="exemplo@gmail.com" name="email" required />
                         <i class="uil uil-envelope-alt email"></i>
                     </div>
                     <div class="input_box">
-                        <input type="password" placeholder="Inserir a password" required />
+                        <input type="password" placeholder="Inserir a password" name="password" required />
                         <i class="uil uil-lock password"></i>
                         <i class="uil uil-eye-slash pw_hide"></i>
                     </div>
@@ -505,7 +507,7 @@ http://www.templatemo.com/tm-515-eatery
                         <a href="#" class="forgot_pw">Esqueceu a password?</a>
                     </div>
 
-                    <button class="button">Login</button>
+                    <button type="submit" class="button">Login</button>
 
                     <div class="login_signup">Não tem uma conta? <a href="#" id="signup">Cadastar</a></div>
                 </form>
@@ -617,7 +619,36 @@ http://www.templatemo.com/tm-515-eatery
     <script src="{{ asset('js/smoothscroll.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset('toastr.min.js') }}"></script>
+    <script>
+        "use strict";
+        var o = "rtl" === $("html").attr("data-textdirection");
+        @if (session('error'))
+            toastr.warning("{{ session('error') }}",
+                "", {
+                    closeButton: !0,
+                    tapToDismiss: !1,
+                    progressBar: !0,
+                    rtl: o
+                }
+            );
+        @endif
+    </script>
 
+    <script>
+        "use strict";
+        var o = "rtl" === $("html").attr("data-textdirection");
+        @if (session('logout'))
+            toastr.info("{{ session('logout') }}",
+                "", {
+                    closeButton: !0,
+                    tapToDismiss: !1,
+                    progressBar: !0,
+                    rtl: o
+                }
+            );
+        @endif
+    </script>
 </body>
 
 </html>
