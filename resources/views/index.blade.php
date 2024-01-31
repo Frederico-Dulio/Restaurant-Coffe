@@ -515,25 +515,27 @@ http://www.templatemo.com/tm-515-eatery
 
             <!-- Signup From -->
             <div class="form signup_form">
-                <form action="#">
-                    <h2>Signup</h2>
+                <form action="{{ route('admin.register.create') }}" method="POST">
+                    @csrf
+                    <h2>Sign up</h2>
 
                     <div class="input_box">
-                        <input type="email" placeholder="Inserir o email" required />
+                        <input type="text" placeholder="nome de usuário" name="name" required/>
+                        <i class="uil uil-user email"></i>
+                    </div>
+
+                    <div class="input_box">
+                        <input type="email" placeholder="exemplo@gmail.com" name="email" required />
                         <i class="uil uil-envelope-alt email"></i>
                     </div>
+
                     <div class="input_box">
-                        <input type="password" placeholder="Criar password" required />
-                        <i class="uil uil-lock password"></i>
-                        <i class="uil uil-eye-slash pw_hide"></i>
-                    </div>
-                    <div class="input_box">
-                        <input type="password" placeholder="Confirmar password" required />
+                        <input type="password" placeholder="senha" name="password" required />
                         <i class="uil uil-lock password"></i>
                         <i class="uil uil-eye-slash pw_hide"></i>
                     </div>
 
-                    <button class="button">Cadastar</button>
+                    <button class="button" type="submit">Cadastar</button>
 
                     <div class="login_signup">Já tem uma conta? <a href="#" id="login">Login</a></div>
                 </form>
@@ -640,6 +642,21 @@ http://www.templatemo.com/tm-515-eatery
         var o = "rtl" === $("html").attr("data-textdirection");
         @if (session('logout'))
             toastr.info("{{ session('logout') }}",
+                "", {
+                    closeButton: !0,
+                    tapToDismiss: !1,
+                    progressBar: !0,
+                    rtl: o
+                }
+            );
+        @endif
+    </script>
+
+    <script>
+        "use strict";
+        var o = "rtl" === $("html").attr("data-textdirection");
+        @if (session('create'))
+            toastr.success("{{ session('create') }}",
                 "", {
                     closeButton: !0,
                     tapToDismiss: !1,
